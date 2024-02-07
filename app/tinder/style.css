@@ -49,3 +49,20 @@
 .swipe-info p {
     text-align: center;
 }
+
+.tags-container {
+    position: absolute;
+    bottom: -50px;
+    display: flex;
+    background-color: gray;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.tag {
+    margin: 0;
+}
+
+.tag:not(:last-child) {
+    padding-right: 4px;
+}

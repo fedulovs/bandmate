@@ -7,22 +7,27 @@ const db = [
     {
         name: 'Kurwa',
         url: 'https://picsum.photos/seed/picsum/400/650',
+        tags: ['metal', 'death metal', 'chomik'],
     },
     {
         name: 'Leaves',
         url: 'https://picsum.photos/seed/picsum/400/650',
+        tags: ['doom metal'],
     },
     {
         name: 'The Blackouts',
         url: 'https://picsum.photos/seed/picsum/400/650',
+        tags: ['rock', 'alternative'],
     },
     {
         name: 'More Mushrooms',
         url: 'https://picsum.photos/seed/picsum/400/650',
+        tags: ['progressive rock', 'rock'],
     },
     {
         name: 'Friday Deployment',
         url: 'https://picsum.photos/seed/picsum/400/650',
+        tags: ['grunge'],
     },
 ];
 
@@ -59,6 +64,14 @@ export default function Tinder() {
                                 className='card'
                             >
                                 <h3>{character.name}</h3>
+                                <div className='tags-container'>
+                                    {character.name ===
+                                        characters[characters.length - 1]
+                                            .name &&
+                                        character.tags.map((tag) => (
+                                            <p className='tag'>#{tag}</p>
+                                        ))}
+                                </div>
                             </div>
                         </TinderCard>
                     ))}
