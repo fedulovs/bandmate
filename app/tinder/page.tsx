@@ -1,43 +1,65 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
+import { getBands, initializeApi } from '../firebase/config';
+import { Band } from '../band/types';
 import './style.css';
 
 const db = [
     {
         name: 'Kurwa',
-        url: 'https://picsum.photos/seed/picsum/400/650',
+        avatar: 'https://picsum.photos/seed/picsum/400/650',
         tags: ['metal', 'death metal', 'chomik'],
     },
     {
         name: 'Leaves',
-        url: 'https://picsum.photos/seed/picsum/400/650',
+        avatar: 'https://picsum.photos/seed/picsum/400/650',
         tags: ['doom metal'],
     },
     {
         name: 'The Blackouts',
-        url: 'https://picsum.photos/seed/picsum/400/650',
+        avatar: 'https://picsum.photos/seed/picsum/400/650',
         tags: ['rock', 'alternative'],
     },
     {
         name: 'More Mushrooms',
-        url: 'https://picsum.photos/seed/picsum/400/650',
+        avatar: 'https://picsum.photos/seed/picsum/400/650',
         tags: ['progressive rock', 'rock'],
     },
     {
         name: 'Friday Deployment',
-        url: 'https://picsum.photos/seed/picsum/400/650',
+        avatar: 'https://picsum.photos/seed/picsum/400/650',
         tags: ['grunge'],
     },
 ];
 
+initializeApi();
+
 export default function Tinder() {
-    const characters = db;
+    const [characters, setCharacters] = useState<Band[]>([]);
     const [lastDirection, setLastDirection] = useState();
+    const [visibleCharacter, setVisibleCharacter] = useState<Band>();
+    const [position, setPosition] = useState(characters.length - 1);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await getBands();
+                setCharacters(response);
+                setVisibleCharacter(response[position]);
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+    }, []);
 
     const swiped = (direction: any, nameToDelete: any) => {
         console.log('removing: ' + nameToDelete);
         setLastDirection(direction);
+        if (position >= 1) {
+            setPosition((last) => position - 1);
+            setVisibleCharacter(characters[position - 1]);
+        }
     };
 
     const outOfFrame = (name: string) => {
@@ -46,7 +68,7 @@ export default function Tinder() {
 
     return (
         <>
-            <h1>Tinder</h1>
+            <h1>Band Tinder</h1>
             <div className='swiper-container'>
                 <div className='card-container'>
                     {characters.map((character) => (
@@ -59,19 +81,18 @@ export default function Tinder() {
                             <div
                                 style={{
                                     backgroundImage:
-                                        'url(' + character.url + ')',
+                                        'url(' + character.avatar + ')',
                                 }}
                                 className='card'
                             >
                                 <h3>{character.name}</h3>
-                                <div className='tags-container'>
-                                    {character.name ===
-                                        characters[characters.length - 1]
-                                            .name &&
-                                        character.tags.map((tag) => (
+                                {character.tags && (
+                                    <div className='tags-container'>
+                                        {character.tags.map((tag) => (
                                             <p className='tag'>#{tag}</p>
                                         ))}
-                                </div>
+                                    </div>
+                                )}
                             </div>
                         </TinderCard>
                     ))}
