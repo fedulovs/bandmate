@@ -35,7 +35,7 @@ const db = [
 
 initializeApi();
 
-export default function Tinder() {
+export const Tinder = () => {
     const [characters, setCharacters] = useState<Band[]>([]);
     const [lastDirection, setLastDirection] = useState();
     const [visibleCharacter, setVisibleCharacter] = useState<Band>();
@@ -107,4 +107,6 @@ export default function Tinder() {
             </div>
         </>
     );
-}
+};
+
+export default Tinder;

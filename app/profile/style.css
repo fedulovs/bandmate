@@ -1,0 +1,32 @@
+.profile-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin: 0 auto;
+    padding: 18px 20px;
+
+    grid-gap: 16px;
+    align-self: center;
+    height: 100vh;
+    background-color: var(--color-container);
+    border-radius: 16px;
+}
+
+.image-container {
+    align-self: start;
+    border-radius: 50%;
+}
+
+.avatar {
+    margin: 10px auto;
+    border-radius: 50px;
+}
+
+.data-container {
+    max-width: 840px;
+}
+
+.name,
+.email,
+.description {
+    color: var(--color-secondary);
+}
