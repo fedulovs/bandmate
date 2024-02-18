@@ -1,0 +1,14 @@
+.tags-container {
+    display: inline-flex;
+    background-color: var(--color-secondary-dark);
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.tag {
+    margin: 0;
+}
+
+.tag:not(:last-child) {
+    padding-right: 4px;
+}

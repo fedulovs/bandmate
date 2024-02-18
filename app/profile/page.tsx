@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import './style.css';
 import logo from '../../public/kurwa_logo.png';
+import Tags from '../components/tags/tags';
 
 export const Profile = () => {
     return (
@@ -22,7 +23,7 @@ export const Profile = () => {
                     <h3>Kurwa</h3>
                     <p className='email'>Email</p>
                     <h3>kurwa@gmail.com</h3>
-                    <p className='description'>Description</p>
+                    <p className='description'>About</p>
                     <h3>
                         Zombie ipsum reversus ab viral inferno, nam rick grimes
                         malum cerebro. De carne lumbering animata corpora
@@ -33,6 +34,7 @@ export const Profile = () => {
                         cerebella viventium. Qui animated corpse, cricket bat
                         max brucks terribilem incessu zomby.{' '}
                     </h3>
+                    <Tags tagsList={['metal', 'death metal', 'chomik']} />
                 </div>
             </div>
         </>

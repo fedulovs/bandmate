@@ -6,7 +6,7 @@
 
     grid-gap: 16px;
     align-self: center;
-    height: 100vh;
+    height: 80vh;
     background-color: var(--color-container);
     border-radius: 16px;
 }
