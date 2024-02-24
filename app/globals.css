@@ -1,6 +1,7 @@
 :root {
     --color-container: #151825;
     --color-secondary-dark: #2e3244;
+    --color-input: #191d2b;
     --color-secondary: #9595a1;
     --container-width: 1440px;
     --max-width: 1100px;
