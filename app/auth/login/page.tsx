@@ -20,7 +20,7 @@ const Login = () => {
                 </div>
                 <div className='form-container'>
                     <form className='login-form'>
-                        // Second use of h1 on one page 😱
+                        {/* Second use of h1 on one page 😱 */}
                         <h1 className='login-form__header'>Log In</h1>
                         <p>Email</p>
                         <input
