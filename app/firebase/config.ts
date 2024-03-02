@@ -3,6 +3,7 @@ import { collection, addDoc, getDocs, getFirestore } from 'firebase/firestore';
 import dotenv from 'dotenv';
 import { Band } from '../band/types';
 import { User } from '../user/types';
+import { getAuth } from 'firebase/auth';
 
 dotenv.config();
 
@@ -24,6 +25,8 @@ export const initializeApi = () => {
     getFirestore(firebase_app);
     console.log('Frebase was successfully init');
 };
+
+export const auth = getAuth(initializeApp(firebaseConfig));
 
 export const getBands = async (): Promise<Band[]> => {
     const db = getFirestore();
