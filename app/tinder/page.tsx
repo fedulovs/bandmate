@@ -4,34 +4,7 @@ import TinderCard from 'react-tinder-card';
 import { getBands, initializeApi } from '../firebase/config';
 import { Band } from '../band/types';
 import './style.css';
-
-const db = [
-    {
-        name: 'Kurwa',
-        avatar: 'https://picsum.photos/seed/picsum/400/650',
-        tags: ['metal', 'death metal', 'chomik'],
-    },
-    {
-        name: 'Leaves',
-        avatar: 'https://picsum.photos/seed/picsum/400/650',
-        tags: ['doom metal'],
-    },
-    {
-        name: 'The Blackouts',
-        avatar: 'https://picsum.photos/seed/picsum/400/650',
-        tags: ['rock', 'alternative'],
-    },
-    {
-        name: 'More Mushrooms',
-        avatar: 'https://picsum.photos/seed/picsum/400/650',
-        tags: ['progressive rock', 'rock'],
-    },
-    {
-        name: 'Friday Deployment',
-        avatar: 'https://picsum.photos/seed/picsum/400/650',
-        tags: ['grunge'],
-    },
-];
+import Nav from '../components/Nav/Nav';
 
 initializeApi();
 
@@ -68,7 +41,7 @@ export const Tinder = () => {
 
     return (
         <>
-            <h1>Band Tinder</h1>
+            <Nav title='Band Tinder' />
             <div className='swiper-container'>
                 <div className='card-container'>
                     {characters.map((character) => (
