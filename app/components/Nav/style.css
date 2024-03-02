@@ -1,0 +1,8 @@
+.top-navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar {
+    border-radius: 50%;
+}

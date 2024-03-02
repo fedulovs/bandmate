@@ -1,13 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
-import './style.css';
 import logo from '../../public/kurwa_logo.png';
 import Tags from '../components/tags/tags';
+import Nav from '../components/Nav/Nav';
+import './style.css';
 
 export const Profile = () => {
     return (
         <>
-            <h1>Profile</h1>
+            <Nav title='Profile' />
             <div className='profile-container'>
                 <div className='image-container'>
                     <Image
