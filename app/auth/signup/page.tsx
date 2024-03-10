@@ -2,18 +2,24 @@
 
 import React, { FormEvent, useState } from 'react';
 import '../login/style.css';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { User, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/config';
+import { useRouter } from 'next/navigation';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [authUser, setAuthUser] = useState<null | User>(null);
+    const router = useRouter();
 
     const signUp = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential);
+                setLoggedIn(true);
+                router.push('/tinder');
             })
             .catch((error) => {
                 console.log(error);
