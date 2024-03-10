@@ -17,6 +17,7 @@ export default function RootLayout({
                             src={background}
                             alt='login-background'
                             objectFit='cover'
+                            priority={true}
                         ></Image>
                     </div>
                 </div>

@@ -1,19 +1,39 @@
 'use client';
 
-import React, { FormEvent, useState } from 'react';
-import './style.css';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import {
+    User,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { auth } from '../../firebase/config';
+import './style.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [authUser, setAuthUser] = useState<null | User>(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setAuthUser(user);
+            } else {
+                setAuthUser(null);
+            }
+        });
+    }, []);
 
     const signIn = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential);
+                setLoggedIn(true);
+                router.push('/tinder');
             })
             .catch((error) => {
                 console.log(error);
