@@ -8,6 +8,8 @@ import {
     signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { auth } from '../../firebase/config';
+import { setAuthState } from '../../store/authSlice';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import './style.css';
 
 const Login = () => {
@@ -15,6 +17,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
     const [authUser, setAuthUser] = useState<null | User>(null);
+    const dispatch = useAppDispatch();
     const router = useRouter();
 
     useEffect(() => {
@@ -33,6 +36,7 @@ const Login = () => {
             .then((userCredential) => {
                 console.log(userCredential);
                 setLoggedIn(true);
+                dispatch(setAuthState(true));
                 router.push('/tinder');
             })
             .catch((error) => {
