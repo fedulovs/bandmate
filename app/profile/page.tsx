@@ -1,11 +1,16 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Image from 'next/image';
 import logo from '../../public/kurwa_logo.png';
 import Tags from '../components/tags/tags';
 import Nav from '../components/Nav/Nav';
 import './style.css';
+import { useAppSelector } from '../store/store';
 
 export const Profile = () => {
+    const user = useAppSelector((state: any) => state.user);
+
     return (
         <>
             <Nav title='Profile' />
@@ -21,7 +26,7 @@ export const Profile = () => {
                 </div>
                 <div className='data-container'>
                     <p className='name'>Display name</p>
-                    <h3>Kurwa</h3>
+                    <h3>{user.name}</h3>
                     <p className='email'>Email</p>
                     <h3>kurwa@gmail.com</h3>
                     <p className='description'>About</p>

@@ -3,8 +3,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../user/types';
 
 const initialState: User = {
-    id: 'loading',
-    name: 'loading',
+    id: '',
+    name: '',
 };
 
 export const userSlice = createSlice({
