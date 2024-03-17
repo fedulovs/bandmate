@@ -7,8 +7,9 @@ import {
     onAuthStateChanged,
     signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { auth } from '../../firebase/config';
+import { auth, getUserById } from '../../firebase/config';
 import { setAuthState } from '../../store/authSlice';
+import { setUserState } from '../../store/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import './style.css';
 
@@ -16,7 +17,9 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
+    const [user, setuser] = useState();
     const [authUser, setAuthUser] = useState<null | User>(null);
+
     const dispatch = useAppDispatch();
     const router = useRouter();
 
@@ -35,9 +38,18 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential);
+                const userId = userCredential.user.uid;
+                return getUserById(userId);
+            })
+            .then((user) => {
+                console.log(user);
                 setLoggedIn(true);
                 dispatch(setAuthState(true));
-                router.push('/tinder');
+                if (user) {
+                    dispatch(setUserState(user));
+                }
+
+                router.push('/profile');
             })
             .catch((error) => {
                 console.log(error);
