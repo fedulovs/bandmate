@@ -1,5 +1,12 @@
 import { getApps, initializeApp } from 'firebase/app';
-import { collection, addDoc, getDocs, getFirestore } from 'firebase/firestore';
+import {
+    collection,
+    addDoc,
+    getDocs,
+    getFirestore,
+    query,
+    where,
+} from 'firebase/firestore';
 import dotenv from 'dotenv';
 import { Band } from '../band/types';
 import { User } from '../user/types';
@@ -17,6 +24,7 @@ const firebaseConfig = {
 };
 
 const bandsItemCollection = 'bands';
+const usersItemCollection = 'users';
 
 export const initializeApi = () => {
     let firebase_app =
@@ -50,6 +58,48 @@ export const getBands = async (): Promise<Band[]> => {
     }
 
     return items;
+};
+
+export const getUsers = async (): Promise<User[]> => {
+    const db = getFirestore();
+    const items: User[] = [];
+
+    try {
+        const querySnapshot = await getDocs(
+            collection(db, usersItemCollection)
+        );
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data() as Omit<User, 'id'>;
+
+            items.push({
+                id: doc.id,
+                ...data,
+            });
+        });
+    } catch (error) {
+        return Promise.reject(error);
+    }
+
+    return items;
+};
+
+export const getUserById = async (id: string): Promise<User | null> => {
+    const db = getFirestore();
+    const usersRef = collection(db, 'users');
+
+    // '__name__' is a keyword for documentID in firestore
+    const q = query(usersRef, where('__name__', '==', id));
+
+    const querySnapshot = await getDocs(q);
+
+    for (const doc of querySnapshot.docs) {
+        const userData = doc.data() as User;
+        userData.id = doc.id;
+        return userData;
+    }
+
+    return null;
 };
 
 export const createTodoItem = async (data: Omit<Band, 'id'>): Promise<any> => {
