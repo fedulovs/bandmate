@@ -11,6 +11,10 @@ import { useAppSelector } from '../store/store';
 export const Profile = () => {
     const user = useAppSelector((state: any) => state.user);
 
+    console.log(`User: ${user.tags}`);
+
+    console.log(`Tags: ${user.tags}`);
+
     return (
         <>
             <Nav title='Profile' />
@@ -28,7 +32,7 @@ export const Profile = () => {
                     <p className='name'>Display name</p>
                     <h3>{user.name}</h3>
                     <p className='email'>Email</p>
-                    <h3>kurwa@gmail.com</h3>
+                    <h3>{user.email}</h3>
                     <p className='description'>About</p>
                     <h3>
                         Zombie ipsum reversus ab viral inferno, nam rick grimes
@@ -38,9 +42,9 @@ export const Profile = () => {
                         Hi mindless mortuis soulless creaturas, imo evil
                         stalking monstra adventus resi dentevil vultus comedat
                         cerebella viventium. Qui animated corpse, cricket bat
-                        max brucks terribilem incessu zomby.{' '}
+                        max brucks terribilem incessu zomby.
                     </h3>
-                    <Tags tagsList={['metal', 'death metal', 'chomik']} />
+                    <Tags tagsList={user.tags} />
                 </div>
             </div>
         </>

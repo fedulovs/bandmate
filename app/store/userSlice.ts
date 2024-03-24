@@ -5,6 +5,8 @@ import { User } from '../user/types';
 const initialState: User = {
     id: '',
     name: '',
+    tags: [],
+    email: '',
 };
 
 export const userSlice = createSlice({
@@ -12,7 +14,10 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUserState: (state, action: PayloadAction<User>) => {
-            (state.id = action.payload.id), (state.name = action.payload.name);
+            (state.id = action.payload.id),
+                (state.name = action.payload.name),
+                (state.tags = action.payload.tags),
+                (state.email = action.payload.email);
         },
     },
 });

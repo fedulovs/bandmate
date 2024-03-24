@@ -17,7 +17,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
-    const [user, setuser] = useState();
+    const [user, setUser] = useState();
     const [authUser, setAuthUser] = useState<null | User>(null);
 
     const dispatch = useAppDispatch();
