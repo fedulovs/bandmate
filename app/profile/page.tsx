@@ -11,10 +11,6 @@ import { useAppSelector } from '../store/store';
 export const Profile = () => {
     const user = useAppSelector((state: any) => state.user);
 
-    console.log(`User: ${user.tags}`);
-
-    console.log(`Tags: ${user.tags}`);
-
     return (
         <>
             <Nav title='Profile' />
