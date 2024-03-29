@@ -1,12 +1,21 @@
 'use client';
 import Image from 'next/image';
 import background from '../../public/background.jpg';
+import { usePathname, useRouter } from 'next/navigation';
+import router from 'next/router';
 
 export default function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const currentPath = usePathname();
+    const router = useRouter();
+
+    const handleNavigation = (destination: string) => {
+        router.push(destination);
+    };
+
     return (
         <div className='login-container'>
             <div className='aside'>
@@ -19,6 +28,24 @@ export default function RootLayout({
                         objectFit='cover'
                         priority={true}
                     ></Image>
+                </div>
+                <div className='aside__switch-container'>
+                    {currentPath === '/auth/login' && (
+                        <button
+                            className='aside__switch-container__button'
+                            onClick={() => handleNavigation('/auth/signup')}
+                        >
+                            Sign Up
+                        </button>
+                    )}
+                    {currentPath === '/auth/signup' && (
+                        <button
+                            className='aside__switch-container__button'
+                            onClick={() => handleNavigation('/auth/login')}
+                        >
+                            Log in
+                        </button>
+                    )}
                 </div>
             </div>
             <div className='form-container'>{children}</div>

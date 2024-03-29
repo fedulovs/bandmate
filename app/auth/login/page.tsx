@@ -67,6 +67,7 @@ const Login = () => {
                     type='email'
                     placeholder='Enter your email'
                     value={email}
+                    autoComplete='email'
                     onChange={(e) => setEmail(e.target.value)}
                 ></input>
                 <p>Password</p>
@@ -75,6 +76,7 @@ const Login = () => {
                     type='password'
                     placeholder='Enter your password'
                     value={password}
+                    autoComplete='current-password'
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
                 <button className='login-form__signin-button' type='submit'>
