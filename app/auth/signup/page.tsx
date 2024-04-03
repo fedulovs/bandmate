@@ -22,7 +22,11 @@ const SignUp = () => {
                 // console.log(userCredential.user.uid);
                 // setUid(userCredential.user.uid);
                 const userId = userCredential.user.uid;
-                createUserInDb(userId, { email: email, name: userName });
+                createUserInDb(userId, {
+                    email: email,
+                    name: userName,
+                    tags: [],
+                });
                 setLoggedIn(true);
                 router.push('/tinder');
             })
@@ -30,8 +34,6 @@ const SignUp = () => {
                 console.log(error);
             });
     };
-
-    const addUserToDb = () => {};
 
     return (
         <>

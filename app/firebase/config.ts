@@ -6,6 +6,8 @@ import {
     getFirestore,
     query,
     where,
+    setDoc,
+    doc,
 } from 'firebase/firestore';
 import dotenv from 'dotenv';
 import { Band } from '../band/types';
@@ -100,6 +102,19 @@ export const getUserById = async (id: string): Promise<User | null> => {
     }
 
     return null;
+};
+
+export const createUserInDb = async (
+    uid: string,
+    data: Omit<User, 'id'>
+): Promise<any> => {
+    const db = getFirestore();
+
+    try {
+        await setDoc(doc(db, usersItemCollection, uid), data);
+    } catch (error) {
+        return Promise.reject(error);
+    }
 };
 
 export const createTodoItem = async (data: Omit<Band, 'id'>): Promise<any> => {
