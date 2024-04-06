@@ -8,6 +8,8 @@ import {
     where,
     setDoc,
     doc,
+    getDoc,
+    updateDoc,
 } from 'firebase/firestore';
 import dotenv from 'dotenv';
 import { Band } from '../band/types';
@@ -114,6 +116,26 @@ export const createUserInDb = async (
         await setDoc(doc(db, usersItemCollection, uid), data);
     } catch (error) {
         return Promise.reject(error);
+    }
+};
+
+export const addTagsToUser = async (
+    uid: string,
+    tags: string[]
+): Promise<void> => {
+    const db = getFirestore();
+
+    try {
+        const userRef = doc(db, usersItemCollection, uid);
+        const userSnapshot = await getDoc(userRef);
+
+        if (userSnapshot.exists()) {
+            await updateDoc(userRef, { tags: tags });
+        } else {
+            throw new Error('User not found in database');
+        }
+    } catch (error) {
+        throw error;
     }
 };
 

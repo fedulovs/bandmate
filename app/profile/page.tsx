@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import logo from '../../public/kurwa_logo.png';
 import Tags from '../components/tags/tags';
 import Nav from '../components/Nav/Nav';
-import './style.css';
 import { useAppSelector } from '../store/store';
+import './style.css';
 
 export const Profile = () => {
     const user = useAppSelector((state: any) => state.user);

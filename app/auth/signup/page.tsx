@@ -3,8 +3,10 @@
 import React, { FormEvent, useState } from 'react';
 import '../login/style.css';
 import { User, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, createUserInDb } from '../../firebase/config';
+import { auth, createUserInDb, getUserById } from '../../firebase/config';
+import { setUserState } from '../../store/userSlice';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/app/store/store';
 
 const SignUp = () => {
     const [uid, setUid] = useState('');
@@ -14,25 +16,34 @@ const SignUp = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [authUser, setAuthUser] = useState<null | User>(null);
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
-    const signUp = (e: FormEvent<HTMLFormElement>) => {
+    const signUp = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // console.log(userCredential.user.uid);
-                // setUid(userCredential.user.uid);
-                const userId = userCredential.user.uid;
-                createUserInDb(userId, {
-                    email: email,
-                    name: userName,
-                    tags: [],
-                });
-                setLoggedIn(true);
-                router.push('/tinder');
-            })
-            .catch((error) => {
-                console.log(error);
+        try {
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            const userId = userCredential.user.uid;
+
+            await createUserInDb(userId, {
+                email: email,
+                name: userName,
+                tags: [],
             });
+
+            const user = await getUserById(userId);
+            if (user) {
+                dispatch(setUserState(user));
+            }
+
+            setLoggedIn(true);
+            router.push('/extra-info');
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (

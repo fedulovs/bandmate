@@ -47,6 +47,7 @@ const Login = () => {
                 dispatch(setAuthState(true));
                 if (user) {
                     dispatch(setUserState(user));
+                    dispatch(setAuthState(true));
                 }
 
                 router.push('/profile');
