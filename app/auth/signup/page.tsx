@@ -7,6 +7,7 @@ import { auth, createUserInDb, getUserById } from '../../firebase/config';
 import { setUserState } from '../../store/userSlice';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/app/store/store';
+import { setAuthState } from '@/app/store/authSlice';
 
 const SignUp = () => {
     const [uid, setUid] = useState('');
@@ -37,6 +38,7 @@ const SignUp = () => {
             const user = await getUserById(userId);
             if (user) {
                 dispatch(setUserState(user));
+                dispatch(setAuthState(true));
             }
 
             setLoggedIn(true);

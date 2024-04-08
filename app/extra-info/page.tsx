@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAppSelector } from '../store/store';
-import { addTagsToUser } from '../firebase/config';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { addTagsToUser, getUserById } from '../firebase/config';
 import { useRouter } from 'next/navigation';
 import './style.css';
+import { setUserState } from '../store/userSlice';
 
 const page = () => {
     const [tags, setTags] = useState([
@@ -14,9 +15,11 @@ const page = () => {
         { name: 'classical', isChecked: false },
         { name: 'jazz', isChecked: false },
         { name: 'country', isChecked: false },
+        { name: 'electronic', isChecked: false },
     ]);
 
     const userId = useAppSelector((state: any) => state.user.id);
+    const dispatch = useAppDispatch();
     const router = useRouter();
 
     const handleTagClick = (clickedTag: any) => {
@@ -28,18 +31,23 @@ const page = () => {
         setTags(updatedTags);
     };
 
-    const addTags = () => {
+    const addTags = async () => {
         const checkedTags = tags.filter((tag) => tag.isChecked);
         const checkedTagNames = checkedTags.map((tag) => tag.name);
-        console.log(checkedTagNames);
 
         addTagsToUser(userId, checkedTagNames);
+
+        const user = await getUserById(userId);
+        if (user) {
+            dispatch(setUserState(user));
+        }
+
         router.push('/profile');
     };
 
     return (
         <div>
-            <h1>Chose your tags</h1>
+            <h1>Chose your favorite styles</h1>
             <div className='tags-container'>
                 {tags.map((tag) => (
                     <div
