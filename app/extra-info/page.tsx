@@ -4,18 +4,19 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { addTagsToUser, getUserById } from '../firebase/config';
 import { useRouter } from 'next/navigation';
-import './style.css';
 import { setUserState } from '../store/userSlice';
+import './style.css';
 
 const page = () => {
     const [tags, setTags] = useState([
-        { name: 'metall', isChecked: false },
-        { name: 'pop', isChecked: false },
-        { name: 'rock', isChecked: false },
-        { name: 'classical', isChecked: false },
-        { name: 'jazz', isChecked: false },
-        { name: 'country', isChecked: false },
-        { name: 'electronic', isChecked: false },
+        { name: 'metall 🤘🏻', isChecked: false },
+        { name: 'pop 🎤', isChecked: false },
+        { name: 'rock 🎸', isChecked: false },
+        { name: 'classical 🎻', isChecked: false },
+        { name: 'jazz 🎺', isChecked: false },
+        { name: 'country 🪕', isChecked: false },
+        { name: 'electronic 👾', isChecked: false },
+        { name: 'funk 🌶', isChecked: false },
     ]);
 
     const userId = useAppSelector((state: any) => state.user.id);
@@ -46,7 +47,7 @@ const page = () => {
     };
 
     return (
-        <div>
+        <div className='page-container'>
             <h1>Chose your favorite styles</h1>
             <div className='tags-container'>
                 {tags.map((tag) => (

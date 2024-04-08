@@ -1,15 +1,34 @@
+.page-container {
+    display: grid;
+    margin: 0 auto;
+    padding: 18px 20px;
+    grid-gap: 16px;
+    align-self: center;
+    height: 90vh;
+    background-color: var(--color-container);
+    border-radius: 16px;
+}
+
 .tags-container {
     display: grid;
+    margin-top: 20px;
+    margin-bottom: 20px;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: 1fr;
     gap: 10px;
     justify-items: center;
+    align-items: center;
 }
 
 .tag {
-    border: 1px solid rgb(58, 48, 197);
-    padding: 20px;
+    background-color: var(--color-secondary-dark);
+    border-radius: 30px;
+    padding: 16px;
     text-align: center;
+}
+
+.tag > p {
+    font-size: 24px;
 }
 
 .checked {
@@ -18,12 +37,12 @@
 
 p {
     color: var(--color-white);
+    margin: 0;
 }
 
 .button-container {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
 }
 
 .ready-button {
