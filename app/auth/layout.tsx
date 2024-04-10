@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import background from '../../public/background.jpg';
 import { usePathname, useRouter } from 'next/navigation';
-import router from 'next/router';
 
 export default function RootLayout({
     children,
@@ -25,7 +24,7 @@ export default function RootLayout({
                         className='background-image'
                         src={background}
                         alt='login-background'
-                        objectFit='cover'
+                        layout='fill'
                         priority={true}
                     ></Image>
                 </div>
