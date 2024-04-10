@@ -25,6 +25,7 @@
     border-radius: 30px;
     padding: 16px;
     text-align: center;
+    cursor: pointer;
 }
 
 .tag > p {

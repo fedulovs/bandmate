@@ -48,7 +48,7 @@ const page = () => {
 
     return (
         <div className='page-container'>
-            <h1>Chose your favorite styles</h1>
+            <h1>Choose your favorite styles</h1>
             <div className='tags-container'>
                 {tags.map((tag) => (
                     <div
