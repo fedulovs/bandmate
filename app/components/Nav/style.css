@@ -1,8 +1,9 @@
 .top-navigation {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.avatar {
+.top-navigation--image-container--avatar {
     border-radius: 50%;
 }

@@ -52,7 +52,9 @@ const page = () => {
             <div className='tags-container'>
                 {tags.map((tag) => (
                     <div
-                        className={`tag ${tag.isChecked ? 'checked' : ''}`}
+                        className={`tags-container__tag ${
+                            tag.isChecked ? 'checked' : ''
+                        }`}
                         key={tag.name}
                         onClick={() => handleTagClick(tag)}
                     >

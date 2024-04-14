@@ -60,7 +60,7 @@ export const Tinder = () => {
                             >
                                 <h3>{character.name}</h3>
                                 {character.tags && (
-                                    <div className='tags-container'>
+                                    <div className='tinder__tags-container'>
                                         {character.tags.map((tag) => (
                                             <p className='tag'>#{tag}</p>
                                         ))}

@@ -21,14 +21,17 @@ const Nav = (props: Props) => {
                 <h1>{props.title}</h1>
             </div>
             {authState && (
-                <div className='image-container'>
+                <div className='top-navigation--image-container'>
                     <Link href='/profile'>
                         <Image
-                            className='avatar'
+                            className='top-navigation--image-container--avatar'
                             src={logo}
                             width={60}
                             height={60}
                             alt='profile'
+                            style={{
+                                maxWidth: '100%',
+                            }}
                         ></Image>
                     </Link>
                 </div>

@@ -6,22 +6,28 @@ import logo from '../../public/kurwa_logo.png';
 import Tags from '../components/tags/tags';
 import Nav from '../components/Nav/Nav';
 import { useAppSelector } from '../store/store';
+import { useRouter } from 'next/navigation';
 import './style.css';
 
 export const Profile = () => {
     const user = useAppSelector((state: any) => state.user);
+    const router = useRouter();
 
     return (
         <>
             <Nav title='Profile' />
             <div className='profile-container'>
-                <div className='image-container'>
+                <div className='profile--image-container'>
                     <Image
                         className='avatar'
                         src={logo}
                         width={200}
                         height={200}
                         alt='Avatar'
+                        style={{
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                        }}
                     ></Image>
                 </div>
                 <div className='data-container'>
@@ -41,6 +47,14 @@ export const Profile = () => {
                         max brucks terribilem incessu zomby.
                     </h3>
                     <Tags tagsList={user.tags} />
+                    <div className='start-tinder-container'>
+                        <button
+                            className='start-tinder-container__button'
+                            onClick={() => router.push('/tinder')}
+                        >
+                            Let's go!
+                        </button>
+                    </div>
                 </div>
             </div>
         </>

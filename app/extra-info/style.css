@@ -20,7 +20,7 @@
     align-items: center;
 }
 
-.tag {
+.tags-container__tag {
     background-color: var(--color-secondary-dark);
     border-radius: 30px;
     padding: 16px;
@@ -28,7 +28,7 @@
     cursor: pointer;
 }
 
-.tag > p {
+.tags-container__tag > p {
     font-size: 24px;
 }
 
