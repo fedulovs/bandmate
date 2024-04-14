@@ -17,7 +17,7 @@
 
 .card {
     position: relative;
-    background-color: #fff;
+    background-color: var(--color-white);
     width: 80vw;
     max-width: 400px;
     height: 650px;
@@ -49,11 +49,11 @@
     text-align: center;
 }
 
-.tags-container {
+.tinder__tags-container {
     position: absolute;
     bottom: -50px;
     display: flex;
-    background-color: gray;
+    background-color: var(--color-secondary-dark);
     border-radius: 30px;
     padding: 10px;
 }
