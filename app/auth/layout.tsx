@@ -24,8 +24,10 @@ export default function RootLayout({
                         className='background-image'
                         src={background}
                         alt='login-background'
-                        layout='fill'
                         priority={true}
+                        fill
+                        sizes='100vw'
+                        placeholder='blur'
                     ></Image>
                 </div>
                 <div className='aside__switch-container'>
