@@ -6,7 +6,7 @@ import { Band } from '../band/types';
 import './style.css';
 import Nav from '../components/Nav/Nav';
 
-initializeApi();
+// initializeApi();
 
 export const Tinder = () => {
     const [characters, setCharacters] = useState<Band[]>([]);
