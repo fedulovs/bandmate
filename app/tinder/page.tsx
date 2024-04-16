@@ -1,18 +1,20 @@
 'use client';
 import { useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
-import { getBands, initializeApi } from '../firebase/config';
+import { getBands, addBandsToUser } from '../firebase/config';
+import { useAppSelector } from '../store/store';
 import { Band } from '../band/types';
-import './style.css';
 import Nav from '../components/Nav/Nav';
-
-// initializeApi();
+import './style.css';
 
 export const Tinder = () => {
     const [characters, setCharacters] = useState<Band[]>([]);
+    const [swipedRightBands, setSwipedRightBands] = useState<string[]>([]);
     const [lastDirection, setLastDirection] = useState();
     const [visibleCharacter, setVisibleCharacter] = useState<Band>();
     const [position, setPosition] = useState(characters.length - 1);
+
+    const uid = useAppSelector((state: any) => state.user.id);
 
     useEffect(() => {
         (async () => {
@@ -26,6 +28,11 @@ export const Tinder = () => {
         })();
     }, []);
 
+    useEffect(() => {
+        addBandsToUser(uid, swipedRightBands);
+        console.log(swipedRightBands);
+    }, [swipedRightBands]);
+
     const swiped = (direction: any, nameToDelete: any) => {
         console.log('removing: ' + nameToDelete);
         setLastDirection(direction);
@@ -33,6 +40,13 @@ export const Tinder = () => {
             setPosition((last) => position - 1);
             setVisibleCharacter(characters[position - 1]);
         }
+
+        if (direction === 'right') {
+            setSwipedRightBands((prevState) => [...prevState, nameToDelete]);
+        }
+
+        addBandsToUser(uid, swipedRightBands);
+        console.log(swipedRightBands);
     };
 
     const outOfFrame = (name: string) => {

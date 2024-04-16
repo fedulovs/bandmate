@@ -139,6 +139,26 @@ export const addTagsToUser = async (
     }
 };
 
+export const addBandsToUser = async (
+    uid: string,
+    bands: string[]
+): Promise<void> => {
+    const db = getFirestore();
+
+    try {
+        const userRef = doc(db, usersItemCollection, uid);
+        const userSnapshot = await getDoc(userRef);
+
+        if (userSnapshot.exists()) {
+            await updateDoc(userRef, { bands: bands });
+        } else {
+            throw new Error('User not found in database');
+        }
+    } catch (error) {
+        throw error;
+    }
+};
+
 export const createTodoItem = async (data: Omit<Band, 'id'>): Promise<any> => {
     const db = getFirestore();
 
