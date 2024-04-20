@@ -1,7 +1,47 @@
 .swiper-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+}
+
+@keyframes changeColorToGreen {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes changeColorToRed {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.swipe-left {
+    width: 100px;
+    height: 650px;
+    background: linear-gradient(to left, #121212, red);
+    opacity: 0;
+}
+
+.red-start {
+    animation: changeColorToRed 1s linear alternate;
+}
+
+.swipe-right {
+    width: 100px;
+    height: 650px;
+    background: linear-gradient(to right, #121212, green);
+    opacity: 0;
+}
+
+.green-start {
+    animation: changeColorToGreen 1s linear alternate;
 }
 
 .swipe {

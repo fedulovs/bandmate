@@ -14,6 +14,9 @@ export const Tinder = () => {
     const [visibleCharacter, setVisibleCharacter] = useState<Band>();
     const [position, setPosition] = useState(characters.length - 1);
 
+    const [leftAnimationStarted, setLeftAnimationStarted] = useState(false);
+    const [rightAnimationStarted, setRightAnimationStarted] = useState(false);
+
     const uid = useAppSelector((state: any) => state.user.id);
 
     useEffect(() => {
@@ -43,6 +46,15 @@ export const Tinder = () => {
 
         if (direction === 'right') {
             setSwipedRightBands((prevState) => [...prevState, nameToDelete]);
+            setRightAnimationStarted(true);
+            setTimeout(() => {
+                setRightAnimationStarted(false);
+            }, 1000);
+        } else {
+            setLeftAnimationStarted(true);
+            setTimeout(() => {
+                setLeftAnimationStarted(false);
+            }, 1000);
         }
 
         addBandsToUser(uid, swipedRightBands);
@@ -57,6 +69,11 @@ export const Tinder = () => {
         <>
             <Nav title='Band Tinder' />
             <div className='swiper-container'>
+                <div
+                    className={`swipe-left ${
+                        leftAnimationStarted && 'red-start'
+                    }`}
+                ></div>
                 <div className='card-container'>
                     {characters.map((character) => (
                         <TinderCard
@@ -92,6 +109,11 @@ export const Tinder = () => {
                         )}
                     </div>
                 </div>
+                <div
+                    className={`swipe-right ${
+                        rightAnimationStarted && 'green-start'
+                    }`}
+                ></div>
             </div>
         </>
     );
