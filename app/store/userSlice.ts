@@ -7,6 +7,7 @@ const initialState: User = {
     name: '',
     tags: [],
     email: '',
+    about: '',
 };
 
 export const userSlice = createSlice({
@@ -17,7 +18,8 @@ export const userSlice = createSlice({
             (state.id = action.payload.id),
                 (state.name = action.payload.name),
                 (state.tags = action.payload.tags),
-                (state.email = action.payload.email);
+                (state.email = action.payload.email),
+                (state.about = action.payload.about);
         },
     },
 });
