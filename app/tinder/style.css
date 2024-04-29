@@ -25,6 +25,7 @@
 .swipe-left {
     width: 100px;
     height: 650px;
+    border-radius: 20px;
     background: linear-gradient(to left, #121212, red);
     opacity: 0;
 }
@@ -36,7 +37,8 @@
 .swipe-right {
     width: 100px;
     height: 650px;
-    background: linear-gradient(to right, #121212, green);
+    border-radius: 20px;
+    background: linear-gradient(to right, #121212, #49da9e);
     opacity: 0;
 }
 

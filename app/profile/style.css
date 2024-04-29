@@ -54,3 +54,19 @@ button:hover {
 .description {
     color: var(--color-secondary);
 }
+
+.description-container {
+    border-radius: 30px;
+    display: flex;
+}
+
+.description-container__edit-button {
+    background-color: transparent;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-button__icon {
+    fill: var(--color-secondary);
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import logo from '../../public/kurwa_logo.png';
 import Tags from '../components/tags/tags';
@@ -8,8 +8,10 @@ import Nav from '../components/Nav/Nav';
 import { useAppSelector } from '../store/store';
 import { useRouter } from 'next/navigation';
 import './style.css';
+import { Edit } from '../components/svg';
 
 export const Profile = () => {
+    const [isEditingAbout, setIsEditingAbout] = useState(false);
     const user = useAppSelector((state: any) => state.user);
     const router = useRouter();
 
@@ -35,17 +37,17 @@ export const Profile = () => {
                     <h3>{user.name}</h3>
                     <p className='email'>Email</p>
                     <h3>{user.email}</h3>
-                    <p className='description'>About</p>
-                    <h3>
-                        Zombie ipsum reversus ab viral inferno, nam rick grimes
-                        malum cerebro. De carne lumbering animata corpora
-                        quaeritis. Summus brains sit​​, morbo vel maleficia? De
-                        apocalypsi gorger omero undead survivor dictum mauris.
-                        Hi mindless mortuis soulless creaturas, imo evil
-                        stalking monstra adventus resi dentevil vultus comedat
-                        cerebella viventium. Qui animated corpse, cricket bat
-                        max brucks terribilem incessu zomby.
-                    </h3>
+                    <div className='description-container'>
+                        <p className='description'>About</p>
+                        <button
+                            className='description-container__edit-button'
+                            onClick={() => setIsEditingAbout(!isEditingAbout)}
+                        >
+                            <Edit className='edit-button__icon' />
+                        </button>
+                    </div>
+                    {!isEditingAbout ? <h3>{user.about}</h3> : <p>Editing</p>}
+
                     <Tags tagsList={user.tags} />
                     <div className='start-tinder-container'>
                         <button
