@@ -33,6 +33,7 @@ const SignUp = () => {
                 email: email,
                 name: userName,
                 tags: [],
+                about: '',
             });
 
             const user = await getUserById(userId);

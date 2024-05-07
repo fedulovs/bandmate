@@ -70,3 +70,31 @@ button:hover {
 .edit-button__icon {
     fill: var(--color-secondary);
 }
+
+.data-container__edit-about-container {
+    margin: 1em 0;
+}
+
+.data-container__edit-about__text {
+    font-family: 'Inter';
+    padding: 8px 8px;
+    width: 840px;
+    border-radius: 5px;
+    font-size: 1.17em;
+    font-weight: bold;
+    background-color: var(--color-input);
+    border: 1px solid var(--color-secondary-dark);
+}
+
+.data-container__edit-about__submit-button {
+    margin-top: 16px;
+    align-self: flex-end;
+    min-height: 34px;
+    padding: 8px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: var(--color-secondary-dark);
+    cursor: pointer;
+    border: none;
+}

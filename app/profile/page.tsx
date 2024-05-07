@@ -1,19 +1,31 @@
 'use client';
 
 import React, { useState } from 'react';
+import { addAboutToUser } from '../firebase/config';
+
 import Image from 'next/image';
 import logo from '../../public/kurwa_logo.png';
 import Tags from '../components/tags/tags';
 import Nav from '../components/Nav/Nav';
-import { useAppSelector } from '../store/store';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import { useRouter } from 'next/navigation';
-import './style.css';
 import { Edit } from '../components/svg';
+import './style.css';
+import { setUserState } from '../store/userSlice';
 
 export const Profile = () => {
     const [isEditingAbout, setIsEditingAbout] = useState(false);
     const user = useAppSelector((state: any) => state.user);
+    const [editedAbout, setEditedAbout] = useState(user.about);
     const router = useRouter();
+    const dispatch = useAppDispatch();
+
+    const addAbout = () => {
+        addAboutToUser(user.id, editedAbout);
+        setIsEditingAbout(false);
+
+        dispatch(setUserState(user));
+    };
 
     return (
         <>
@@ -46,7 +58,25 @@ export const Profile = () => {
                             <Edit className='edit-button__icon' />
                         </button>
                     </div>
-                    {!isEditingAbout ? <h3>{user.about}</h3> : <p>Editing</p>}
+                    {!isEditingAbout ? (
+                        <h3>{editedAbout}</h3>
+                    ) : (
+                        <div className='data-container__edit-about-container'>
+                            <textarea
+                                className='data-container__edit-about__text'
+                                placeholder='Tell more about yourself'
+                                rows={4}
+                                value={editedAbout}
+                                onChange={(e) => setEditedAbout(e.target.value)}
+                            ></textarea>
+                            <button
+                                className='data-container__edit-about__submit-button'
+                                onClick={addAbout}
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    )}
 
                     <Tags tagsList={user.tags} />
                     <div className='start-tinder-container'>
