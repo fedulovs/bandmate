@@ -1,0 +1,32 @@
+.button-normal {
+    min-height: 10px;
+    padding: 8px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: var(--color-secondary-dark);
+    cursor: pointer;
+    border: none;
+}
+
+.button-normal:hover {
+    background-color: var(--color-input);
+    color: var(--color-white);
+}
+
+.button-login {
+    height: 40px;
+    min-width: 80px;
+    border-radius: 10px;
+    background-color: var(--color-white);
+    color: var(--color-input);
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-login:hover {
+    background-color: var(--color-input);
+    color: var(--color-white);
+}

@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { Edit } from '../components/svg';
 import './style.css';
 import { setUserState } from '../store/userSlice';
+import { Button } from '../components/common/button/Button';
 
 export const Profile = () => {
     const [isEditingAbout, setIsEditingAbout] = useState(false);
