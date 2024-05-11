@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import background from '../../public/background.jpg';
 import { usePathname, useRouter } from 'next/navigation';
+import { Button } from '../components/common/button/Button';
 
 export default function RootLayout({
     children,
@@ -32,20 +33,20 @@ export default function RootLayout({
                 </div>
                 <div className='aside__switch-container'>
                     {currentPath === '/auth/login' && (
-                        <button
-                            className='aside__switch-container__button'
+                        <Button
+                            buttonType='login'
                             onClick={() => handleNavigation('/auth/signup')}
                         >
                             Sign Up
-                        </button>
+                        </Button>
                     )}
                     {currentPath === '/auth/signup' && (
-                        <button
-                            className='aside__switch-container__button'
+                        <Button
+                            buttonType='login'
                             onClick={() => handleNavigation('/auth/login')}
                         >
                             Log in
-                        </button>
+                        </Button>
                     )}
                 </div>
             </div>

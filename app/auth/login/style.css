@@ -29,17 +29,6 @@
     z-index: 1;
 }
 
-.aside__switch-container__button {
-    height: 40px;
-    min-width: 80px;
-    border-radius: 10px;
-    background-color: var(--color-white);
-    color: var(--color-input);
-    font-weight: 600;
-    border: none;
-    font-size: 14px;
-}
-
 .image-container {
     position: relative;
     height: 100vh;
@@ -70,14 +59,6 @@
 .login-form__signin-button {
     margin-top: 40px;
     width: 100%;
-    min-height: 34px;
-    padding: 8px;
-    border-radius: 30px;
-    font-weight: 500;
-    font-size: 14px;
-    background-color: var(--color-secondary-dark);
-    cursor: pointer;
-    border: none;
 }
 
 button:hover {

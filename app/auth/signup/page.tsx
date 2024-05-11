@@ -8,6 +8,7 @@ import { setUserState } from '../../store/userSlice';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/app/store/store';
 import { setAuthState } from '@/app/store/authSlice';
+import { Button } from '@/app/components/common/button/Button';
 
 const SignUp = () => {
     const [uid, setUid] = useState('');
@@ -80,9 +81,13 @@ const SignUp = () => {
                     autoComplete='current-password'
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
-                <button className='login-form__signin-button' type='submit'>
+                <Button
+                    classNames='login-form__signin-button'
+                    buttonType='regular'
+                    type='submit'
+                >
                     Create account
-                </button>
+                </Button>
             </form>
         </>
     );
