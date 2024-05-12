@@ -69,12 +69,15 @@ export const Profile = () => {
                                 value={editedAbout}
                                 onChange={(e) => setEditedAbout(e.target.value)}
                             ></textarea>
-                            <button
-                                className='data-container__edit-about__submit-button'
-                                onClick={addAbout}
+                            <Button
+                                classNames='data-container__edit-about__submit-button'
+                                buttonType='regular'
+                                onClick={() => {
+                                    addAbout();
+                                }}
                             >
                                 Submit
-                            </button>
+                            </Button>
                         </div>
                     )}
 

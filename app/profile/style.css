@@ -59,7 +59,7 @@
 }
 
 .data-container__edit-about-container {
-    margin: 1em 0;
+    margin: 16px 0;
 }
 
 .data-container__edit-about__text {
@@ -75,13 +75,4 @@
 
 .data-container__edit-about__submit-button {
     margin-top: 16px;
-    align-self: flex-end;
-    min-height: 34px;
-    padding: 8px;
-    border-radius: 30px;
-    font-weight: 500;
-    font-size: 14px;
-    background-color: var(--color-secondary-dark);
-    cursor: pointer;
-    border: none;
 }
