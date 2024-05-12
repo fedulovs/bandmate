@@ -48,10 +48,8 @@
 }
 
 .description-container__edit-button {
-    background-color: transparent;
-    border-radius: 30px;
+    background-color: transparent !important;
     border: none;
-    cursor: pointer;
 }
 
 .edit-button__icon {

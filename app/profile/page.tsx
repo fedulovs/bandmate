@@ -51,12 +51,13 @@ export const Profile = () => {
                     <h3>{user.email}</h3>
                     <div className='description-container'>
                         <p className='description'>About</p>
-                        <button
-                            className='description-container__edit-button'
+                        <Button
+                            buttonType='regular'
+                            classNames='description-container__edit-button'
                             onClick={() => setIsEditingAbout(!isEditingAbout)}
                         >
                             <Edit className='edit-button__icon' />
-                        </button>
+                        </Button>
                     </div>
                     {!isEditingAbout ? (
                         <h3>{editedAbout}</h3>
