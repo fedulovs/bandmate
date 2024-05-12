@@ -6,6 +6,7 @@ import { addTagsToUser, getUserById } from '../firebase/config';
 import { useRouter } from 'next/navigation';
 import { setUserState } from '../store/userSlice';
 import './style.css';
+import { Button } from '../components/common/button/Button';
 
 const page = () => {
     const [tags, setTags] = useState([
@@ -63,9 +64,13 @@ const page = () => {
                 ))}
             </div>
             <div className='button-container'>
-                <button className='ready-button' onClick={addTags}>
+                <Button
+                    classNames='ready-button'
+                    buttonType={'regular'}
+                    onClick={addTags}
+                >
                     Ready
-                </button>
+                </Button>
             </div>
         </div>
     );

@@ -49,17 +49,4 @@ p {
 .ready-button {
     align-self: flex-end;
     margin-top: 40px;
-    min-height: 34px;
-    padding: 8px;
-    border-radius: 30px;
-    font-weight: 500;
-    font-size: 14px;
-    background-color: var(--color-secondary-dark);
-    cursor: pointer;
-    border: none;
-}
-
-button:hover {
-    background-color: var(--color-input);
-    color: var(--color-white);
 }
