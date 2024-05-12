@@ -80,12 +80,13 @@ export const Profile = () => {
 
                     <Tags tagsList={user.tags} />
                     <div className='start-tinder-container'>
-                        <button
-                            className='start-tinder-container__button'
+                        <Button
+                            classNames='start-tinder-container__button'
+                            buttonType='regular'
                             onClick={() => router.push('/tinder')}
                         >
                             Let's go!
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>
