@@ -7,3 +7,8 @@
 .top-navigation--image-container--avatar {
     border-radius: 50%;
 }
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+}

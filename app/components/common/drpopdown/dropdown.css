@@ -1,0 +1,21 @@
+.dropdown-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    border: 1px solid black;
+    background-color: var(--color-secondary-dark);
+    border-radius: 16px;
+    align-items: start;
+}
+
+.dropdown-item {
+    width: 100%;
+    padding: 0px 16px;
+    cursor: pointer;
+    color: var(--color-secondary);
+}
+
+.dropdown-item:hover {
+    color: var(--color-white);
+}
