@@ -1,8 +1,7 @@
 'use client';
 
-import React, { use, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import logo from '../../../public/kurwa_logo.png';
 import './style.css';
 import { useAppSelector } from '../../store/store';
@@ -16,6 +15,7 @@ interface Props {
 const Nav = (props: Props) => {
     const authState = useAppSelector((state: any) => state.auth.authState);
     const [dropdownOpened, setDropdownOpened] = useState(false);
+    const [hasNotifications, setHasNotifications] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -60,6 +60,7 @@ const Nav = (props: Props) => {
                             setDropdownOpened(!dropdownOpened);
                         }}
                     ></Image>
+                    {hasNotifications && <div className='red-dot' />}
                     {dropdownOpened && <Dropdown />}
                 </div>
             )}

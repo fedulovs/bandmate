@@ -5,10 +5,20 @@
 }
 
 .top-navigation--image-container--avatar {
+    position: relative;
     border-radius: 50%;
 }
 
 a {
     text-decoration: inherit;
     color: inherit;
+}
+
+.red-dot {
+    position: absolute;
+    top: 80px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(144, 0, 255);
 }
