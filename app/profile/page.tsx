@@ -14,8 +14,8 @@ import { setUserState } from '../store/userSlice';
 import { Button } from '../components/common/button/Button';
 
 export const Profile = () => {
-    const [isEditingAbout, setIsEditingAbout] = useState(false);
     const user = useAppSelector((state: any) => state.user);
+    const [isEditingAbout, setIsEditingAbout] = useState(false);
     const [editedAbout, setEditedAbout] = useState(user.about);
     const router = useRouter();
     const dispatch = useAppDispatch();

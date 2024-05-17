@@ -8,7 +8,9 @@ const Dropdown = () => {
             <Link href='/profile'>
                 <ul className='dropdown-item'>Profile</ul>
             </Link>
-            <ul className='dropdown-item'>Band</ul>
+            <Link href='/band'>
+                <ul className='dropdown-item'>Band</ul>
+            </Link>
             <Link href='/auth/login'>
                 <ul className='dropdown-item'>Exit</ul>
             </Link>

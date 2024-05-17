@@ -7,6 +7,7 @@
     background-color: var(--color-secondary-dark);
     border-radius: 16px;
     align-items: start;
+    z-index: 1;
 }
 
 .dropdown-item {
