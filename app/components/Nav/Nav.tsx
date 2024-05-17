@@ -47,21 +47,19 @@ const Nav = (props: Props) => {
                     className='top-navigation--image-container'
                     ref={dropdownRef}
                 >
-                    <Link href='/profile'>
-                        <Image
-                            className='top-navigation--image-container--avatar'
-                            src={logo}
-                            width={60}
-                            height={60}
-                            alt='profile'
-                            style={{
-                                maxWidth: '100%',
-                            }}
-                            onClick={() => {
-                                setDropdownOpened(!dropdownOpened);
-                            }}
-                        ></Image>
-                    </Link>
+                    <Image
+                        className='top-navigation--image-container--avatar'
+                        src={logo}
+                        width={60}
+                        height={60}
+                        alt='profile'
+                        style={{
+                            maxWidth: '100%',
+                        }}
+                        onClick={() => {
+                            setDropdownOpened(!dropdownOpened);
+                        }}
+                    ></Image>
                     {dropdownOpened && <Dropdown />}
                 </div>
             )}

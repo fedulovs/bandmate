@@ -9,7 +9,9 @@ const Dropdown = () => {
                 <ul className='dropdown-item'>Profile</ul>
             </Link>
             <ul className='dropdown-item'>Band</ul>
-            <ul className='dropdown-item'>Exit</ul>
+            <Link href='/auth/login'>
+                <ul className='dropdown-item'>Exit</ul>
+            </Link>
         </div>
     );
 };
