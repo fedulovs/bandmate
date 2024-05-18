@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { addAboutToUser } from '../firebase/config';
 
 import Image from 'next/image';
-import logo from '../../public/kurwa_logo.png';
+import logo from '../../public/band_photo.jpg';
 import Tags from '../components/tags/tags';
 import Nav from '../components/Nav/Nav';
 import { useAppDispatch, useAppSelector } from '../store/store';
@@ -30,25 +30,31 @@ export const Band = () => {
     return (
         <>
             <Nav title='Band' />
-            <div className='profile-container'>
+            <div className='band-profile-container'>
                 <div className='profile--image-container'>
                     <Image
-                        className='avatar'
+                        className='band-avatar'
                         src={logo}
-                        width={0}
-                        height={0}
+                        // width={0}
+                        // height={0}
+                        layout={'fill'}
+                        objectFit={'cover'}
                         sizes='100vw'
-                        alt='Avatar'
+                        alt='avatar'
                     ></Image>
                     <h1 className='band-name'>Kurwa</h1>
                 </div>
-                <div className='data-container'>
+                <div className='band-data-container'>
                     <p className='name'>Members</p>
                     <h3>
-                        Horia - vocals, bass | Sergey - guitars | Tom - guitars
-                        | Pablo - drums
+                        Horia - vocals, bass
+                        <br />
+                        Sergey - guitars
+                        <br />
+                        Tom - guitars
+                        <br />
+                        Pablo - drums
                     </h3>
-
                     <div className='description-container'>
                         <p className='description'>About</p>
                         <Button
@@ -81,7 +87,7 @@ export const Band = () => {
                             </Button>
                         </div>
                     )}
-
+                    <p className='tags-title'>Tags</p>
                     <Tags tagsList={user.tags} />
                     <div className='start-tinder-container'>
                         <Button

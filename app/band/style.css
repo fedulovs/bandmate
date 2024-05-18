@@ -1,4 +1,4 @@
-.profile-container {
+.band-profile-container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -10,40 +10,46 @@
 
 .profile--image-container {
     position: relative;
+    height: 450px;
     width: 100%;
     align-self: start;
     border-radius: 50%;
 }
 
-.avatar {
+.band-avatar {
+    position: absolute;
     width: 100%;
-    height: 400px;
+    object-position: top;
+    border-radius: 16px;
 }
 
 .band-name {
     position: absolute;
-    top: 330px;
-    left: 24px;
+    font-size: 65px;
+    top: 270px;
+    left: 36px;
 }
 
-.data-container {
-    width: 100%;
+.band-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     padding: 18px 20px;
 }
 
 .start-tinder-container {
     display: flex;
-    justify-content: flex-end;
 }
 
 .start-tinder-container__button {
-    margin-right: 30px;
     margin-top: 16px;
 }
 
 .name,
 .email,
-.description {
+.description,
+.tags-title {
     margin: 16px 0 0 0;
     color: var(--color-secondary);
 }

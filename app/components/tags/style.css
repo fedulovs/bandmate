@@ -3,6 +3,8 @@
     background-color: var(--color-secondary-dark);
     border-radius: 30px;
     padding: 10px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
 }
 
 .tag {
