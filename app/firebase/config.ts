@@ -12,7 +12,7 @@ import {
     updateDoc,
 } from 'firebase/firestore';
 import dotenv from 'dotenv';
-import { Band } from '../band/types';
+import { IBand } from '../band/types';
 import { User } from '../user/types';
 import { getAuth } from 'firebase/auth';
 
@@ -40,9 +40,9 @@ export const initializeApi = () => {
 
 export const auth = getAuth(initializeApp(firebaseConfig));
 
-export const getBands = async (): Promise<Band[]> => {
+export const getBands = async (): Promise<IBand[]> => {
     const db = getFirestore();
-    const items: Band[] = [];
+    const items: IBand[] = [];
 
     try {
         const querySnapshot = await getDocs(
@@ -50,7 +50,7 @@ export const getBands = async (): Promise<Band[]> => {
         );
 
         querySnapshot.forEach((doc) => {
-            const data = doc.data() as Omit<Band, 'id'>;
+            const data = doc.data() as Omit<IBand, 'id'>;
 
             items.push({
                 id: doc.id,
@@ -62,6 +62,31 @@ export const getBands = async (): Promise<Band[]> => {
     }
 
     return items;
+};
+
+export const getBandByName = async (
+    bandName: string
+): Promise<IBand | null> => {
+    try {
+        const db = getFirestore();
+
+        const bandsRef = collection(db, 'bands');
+        const q = query(bandsRef, where('name', '==', bandName));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            const doc = querySnapshot.docs[0]; // Assuming you want the first match
+            const bandData = doc.data() as IBand;
+            bandData.id = doc.id;
+            return bandData;
+        } else {
+            console.log('No bands found with the name:', bandName);
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching band by name:', error);
+        throw error;
+    }
 };
 
 export const getUsers = async (): Promise<User[]> => {
@@ -179,7 +204,7 @@ export const addAboutToUser = async (
     }
 };
 
-export const createTodoItem = async (data: Omit<Band, 'id'>): Promise<any> => {
+export const createTodoItem = async (data: Omit<IBand, 'id'>): Promise<any> => {
     const db = getFirestore();
 
     try {
