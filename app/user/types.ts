@@ -4,6 +4,6 @@ export interface User {
     email: string;
     tags: string[];
     about: string;
-    // bands: string[];
+    bands: string[];
     // avatar: string;
 }
