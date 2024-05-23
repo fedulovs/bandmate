@@ -8,6 +8,7 @@ const initialState: User = {
     tags: [],
     email: '',
     about: '',
+    bands: [],
 };
 
 export const userSlice = createSlice({
@@ -19,7 +20,8 @@ export const userSlice = createSlice({
                 (state.name = action.payload.name),
                 (state.tags = action.payload.tags),
                 (state.email = action.payload.email),
-                (state.about = action.payload.about);
+                (state.about = action.payload.about),
+                (state.bands = action.payload.bands);
         },
     },
 });
