@@ -20,3 +20,13 @@
 .dropdown-item:hover {
     color: var(--color-white);
 }
+
+.bands-heading {
+    height: 20px;
+    padding: 0px 16px;
+    color: var(--color-secondary);
+}
+
+.dropdown-band {
+    margin-left: 16px;
+}
