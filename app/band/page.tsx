@@ -1,6 +1,6 @@
 'use client';
-import React, { useState } from 'react';
-import { addAboutToUser } from '../firebase/config';
+import React, { useEffect, useState } from 'react';
+import { addAboutToUser, getBandByName } from '../firebase/config';
 
 import Image from 'next/image';
 import logo from '../../public/band_photo.jpg';
@@ -12,13 +12,32 @@ import { Edit } from '../components/svg';
 import './style.css';
 import { setUserState } from '../store/userSlice';
 import { Button } from '../components/common/button/Button';
+import { IBand } from './types';
 
 export const Band = () => {
     const user = useAppSelector((state: any) => state.user);
+    const [bandName, setBandName] = useState('Kurwa');
+    const [band, setBand] = useState<null | IBand>(null);
     const [isEditingAbout, setIsEditingAbout] = useState(false);
-    const [editedAbout, setEditedAbout] = useState(user.about);
+    const [editedAbout, setEditedAbout] = useState('');
     const router = useRouter();
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await getBandByName(bandName);
+                if (response !== null) {
+                    setBand(response);
+                    setEditedAbout(response.description || '');
+                } else {
+                    console.error('Band not found');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+    }, [bandName]);
 
     const addAbout = () => {
         addAboutToUser(user.id, editedAbout);
@@ -35,27 +54,24 @@ export const Band = () => {
                     <Image
                         className='band-avatar'
                         src={logo}
-                        // width={0}
-                        // height={0}
                         layout={'fill'}
                         objectFit={'cover'}
                         sizes='100vw'
                         alt='avatar'
                     ></Image>
-                    <h1 className='band-name'>Kurwa</h1>
+                    <h1 className='band-name'>{band?.name}</h1>
                 </div>
                 <div className='band-data-container'>
                     <p className='name'>Members</p>
                     <h3>
-                        Horia - vocals, bass
-                        <br />
-                        Sergey - guitars
-                        <br />
-                        Tom - guitars
-                        <br />
-                        Pablo - drums
+                        {band?.members.map((member, index) => (
+                            <>
+                                {member}
+                                {index !== band.members.length - 1 && <br />}
+                            </>
+                        ))}
                     </h3>
-                    <div className='description-container'>
+                    <div className='band-description-container'>
                         <p className='description'>About</p>
                         <Button
                             buttonType='regular'
@@ -66,7 +82,7 @@ export const Band = () => {
                         </Button>
                     </div>
                     {!isEditingAbout ? (
-                        <h3>{editedAbout}</h3>
+                        <h3 className='description-text'>{editedAbout}</h3>
                     ) : (
                         <div className='data-container__edit-about-container'>
                             <textarea
@@ -88,7 +104,7 @@ export const Band = () => {
                         </div>
                     )}
                     <p className='tags-title'>Tags</p>
-                    <Tags tagsList={user.tags} />
+                    <Tags tagsList={band?.tags} />
                     <div className='start-tinder-container'>
                         <Button
                             classNames='start-tinder-container__button'
