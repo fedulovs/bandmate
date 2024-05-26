@@ -7,7 +7,7 @@ import logo from '../../public/band_photo.jpg';
 import Tags from '../components/tags/tags';
 import Nav from '../components/Nav/Nav';
 import { useAppDispatch, useAppSelector } from '../store/store';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Edit } from '../components/svg';
 import './style.css';
 import { setUserState } from '../store/userSlice';
@@ -15,28 +15,41 @@ import { Button } from '../components/common/button/Button';
 import { IBand } from './types';
 
 export const Band = () => {
+    const searchParams = useSearchParams();
     const user = useAppSelector((state: any) => state.user);
-    const [bandName, setBandName] = useState('Kurwa');
+    const [bandName, setBandName] = useState<string | null>(
+        searchParams.get('name')
+    );
     const [band, setBand] = useState<null | IBand>(null);
     const [isEditingAbout, setIsEditingAbout] = useState(false);
     const [editedAbout, setEditedAbout] = useState('');
     const router = useRouter();
     const dispatch = useAppDispatch();
 
+    // Reacts to change of params
     useEffect(() => {
-        (async () => {
-            try {
-                const response = await getBandByName(bandName);
-                if (response !== null) {
-                    setBand(response);
-                    setEditedAbout(response.description || '');
-                } else {
-                    console.error('Band not found');
+        const nameParam = searchParams.get('name');
+        setBandName(nameParam || '');
+    }, [searchParams]);
+
+    useEffect(() => {
+        if (bandName) {
+            (async () => {
+                try {
+                    const response = await getBandByName(bandName);
+                    if (response !== null) {
+                        setBand(response);
+                        setEditedAbout(response.description || '');
+                    } else {
+                        console.error('Band not found');
+                    }
+                } catch (error) {
+                    console.error(error);
                 }
-            } catch (error) {
-                console.error(error);
-            }
-        })();
+            })();
+        } else {
+            console.error('No band name provided');
+        }
     }, [bandName]);
 
     const addAbout = () => {

@@ -2,6 +2,7 @@ import React from 'react';
 import './dropdown.css';
 import Link from 'next/link';
 import { useAppSelector } from '@/app/store/store';
+import { query } from 'firebase/firestore';
 
 const Dropdown = () => {
     const user = useAppSelector((state: any) => state.user);
@@ -12,11 +13,13 @@ const Dropdown = () => {
                 <ul className='dropdown-item'>Profile</ul>
             </Link>
             <p className='bands-heading'>Bands</p>
-            <Link href='/band'>
-                {user.bands.map((band: string) => (
+
+            {user.bands.map((band: string) => (
+                <Link href={{ pathname: '/band', query: { name: band } }}>
                     <ul className='dropdown-item dropdown-band'>{band}</ul>
-                ))}
-            </Link>
+                </Link>
+            ))}
+
             <Link href='/auth/login'>
                 <ul className='dropdown-item'>Exit</ul>
             </Link>
