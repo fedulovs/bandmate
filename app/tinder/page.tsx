@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
 import { getBands, addBandsToUser } from '../firebase/config';
 import { useAppSelector } from '../store/store';
-import { Band } from '../band/types';
+import { IBand } from '../band/types';
 import Nav from '../components/Nav/Nav';
 import './style.css';
 
 export const Tinder = () => {
-    const [characters, setCharacters] = useState<Band[]>([]);
+    const [characters, setCharacters] = useState<IBand[]>([]);
     const [swipedRightBands, setSwipedRightBands] = useState<string[]>([]);
     const [lastDirection, setLastDirection] = useState();
-    const [visibleCharacter, setVisibleCharacter] = useState<Band>();
+    const [visibleCharacter, setVisibleCharacter] = useState<IBand>();
     const [position, setPosition] = useState(characters.length - 1);
 
     const [leftAnimationStarted, setLeftAnimationStarted] = useState(false);
@@ -93,7 +93,7 @@ export const Tinder = () => {
                                 <h3>{character.name}</h3>
                                 {character.tags && (
                                     <div className='tinder__tags-container'>
-                                        {character.tags.map((tag) => (
+                                        {character.tags.map((tag: string) => (
                                             <p className='tag'>#{tag}</p>
                                         ))}
                                     </div>
