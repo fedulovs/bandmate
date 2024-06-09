@@ -19,6 +19,10 @@ const Dropdown = () => {
                 </Link>
             ))}
 
+            <Link href='/notification'>
+                <ul className='dropdown-item'>Notifications</ul>
+            </Link>
+
             <Link href='/auth/login'>
                 <ul className='dropdown-item'>Exit</ul>
             </Link>

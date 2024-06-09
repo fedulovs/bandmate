@@ -1,0 +1,11 @@
+.notification-container {
+}
+
+.notification-container__notification {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-container__notification__message {
+    color: var(--color-secondary);
+}
