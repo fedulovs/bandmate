@@ -66,7 +66,7 @@ export const Band = () => {
                 <div className='profile--image-container'>
                     <Image
                         className='band-avatar'
-                        src={logo}
+                        src={band?.avatar ? band.avatar : logo}
                         layout={'fill'}
                         objectFit={'cover'}
                         sizes='100vw'

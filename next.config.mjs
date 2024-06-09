@@ -16,4 +16,13 @@ export default {
 
         return config;
     },
+
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**',
+            },
+        ],
+    },
 };
