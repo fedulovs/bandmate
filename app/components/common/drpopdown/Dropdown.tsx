@@ -2,7 +2,6 @@ import React from 'react';
 import './dropdown.css';
 import Link from 'next/link';
 import { useAppSelector } from '@/app/store/store';
-import { query } from 'firebase/firestore';
 
 const Dropdown = () => {
     const user = useAppSelector((state: any) => state.user);
