@@ -1,24 +1,34 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Nav from '../components/Nav/Nav';
 import './style.css';
+import { getNotificationByRecipientId } from '../firebase/config';
+import { INotification } from './types';
 
 const Notifications = () => {
-    const [notifications, setNotifications] = useState([
-        { userName: 'John', isRead: false, message: 'Yoooo' },
-        {
-            userName: 'Doe',
-            isRead: false,
-            message: 'This is second notification',
-        },
-    ]);
+    const [notifications, setNotifications] = useState<
+        INotification[] | null
+    >();
+
+    const getNotifications = useCallback(async () => {
+        try {
+            const notifications = await getNotificationByRecipientId('23');
+            setNotifications(notifications);
+        } catch (error) {
+            console.error('Error fetching notifications:', error);
+        }
+    }, []);
+
+    useEffect(() => {
+        getNotifications();
+    }, [getNotifications]);
 
     return (
         <div>
             <Nav title='Notifications' />
             <div className='notification-container'>
-                {notifications.map((notification) => (
+                {notifications?.map((notification) => (
                     <div className='notification-container__notification'>
                         <h4>{notification.userName}</h4>
                         <p className='notification-container__notification__message'>
