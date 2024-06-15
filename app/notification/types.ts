@@ -1,4 +1,5 @@
 export interface INotification {
+    id: string;
     isRead: boolean;
     recipientUserId: string;
     senderUserId: string;
