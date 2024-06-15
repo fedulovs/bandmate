@@ -15,6 +15,7 @@ import dotenv from 'dotenv';
 import { IBand } from '../band/types';
 import { User } from '../user/types';
 import { getAuth } from 'firebase/auth';
+import { INotification } from '../notification/types';
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ const firebaseConfig = {
 
 const bandsItemCollection = 'bands';
 const usersItemCollection = 'users';
+const notificationsItemCollection = 'notifications';
 
 export const initializeApi = () => {
     let firebase_app =
@@ -129,6 +131,40 @@ export const getUserById = async (id: string): Promise<User | null> => {
     }
 
     return null;
+};
+
+export const getNotificationByRecipientId = async (
+    recipientId: string
+): Promise<INotification[]> => {
+    try {
+        const db = getFirestore();
+        const notificationsRef = collection(db, 'notifications');
+        const q = query(
+            notificationsRef,
+            where('recipientUserId', '==', recipientId)
+        );
+        const querySnapshot = await getDocs(q);
+
+        const notifications: INotification[] = [];
+
+        if (!querySnapshot.empty) {
+            querySnapshot.forEach((doc) => {
+                const notificationData = doc.data() as INotification;
+                notificationData.id = doc.id;
+                notifications.push(notificationData);
+            });
+        } else {
+            console.log(
+                'No notifications found with the recipientId:',
+                recipientId
+            );
+        }
+
+        return notifications;
+    } catch (error) {
+        console.error('Error fetching notifications by recipientId:', error);
+        throw error;
+    }
 };
 
 export const createUserInDb = async (
