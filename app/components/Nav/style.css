@@ -16,9 +16,17 @@ a {
 
 .red-dot {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 80px;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: rgb(144, 0, 255);
+    z-index: 2;
+}
+
+.red-dot__notification-number {
+    font-size: 12px;
 }

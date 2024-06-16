@@ -5,15 +5,17 @@ import Nav from '../components/Nav/Nav';
 import './style.css';
 import { getNotificationByRecipientId } from '../firebase/config';
 import { INotification } from './types';
+import { useAppSelector } from '../store/store';
 
 const Notifications = () => {
+    const user = useAppSelector((state: any) => state.user);
     const [notifications, setNotifications] = useState<
         INotification[] | null
     >();
 
     const getNotifications = useCallback(async () => {
         try {
-            const notifications = await getNotificationByRecipientId('23');
+            const notifications = await getNotificationByRecipientId(user.id);
             setNotifications(notifications);
         } catch (error) {
             console.error('Error fetching notifications:', error);
