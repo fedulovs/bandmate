@@ -32,7 +32,12 @@ const Notifications = () => {
             <div className='notification-container'>
                 {notifications?.map((notification) => (
                     <div className='notification-container__notification'>
-                        <h4>{notification.userName}</h4>
+                        <div className='notification-container__username'>
+                            <h4>{notification.userName}</h4>
+                            {!notification.isRead && (
+                                <div className='notification-container__red-dot'></div>
+                            )}
+                        </div>
                         <p className='notification-container__notification__message'>
                             {notification.message}
                         </p>

@@ -6,6 +6,19 @@
     flex-direction: column;
 }
 
+.notification-container__username {
+    display: flex;
+    align-items: center;
+}
+
+.notification-container__red-dot {
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    border-radius: 50%;
+    background-color: rgb(144, 0, 255);
+}
+
 .notification-container__notification__message {
     color: var(--color-secondary);
 }
