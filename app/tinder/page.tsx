@@ -1,7 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
-import { getBands, addBandsToUser } from '../firebase/config';
+import {
+    getBands,
+    addBandsToUser,
+    getBandByName,
+    createNotificationInDb,
+} from '../firebase/config';
 import { useAppSelector } from '../store/store';
 import { IBand } from '../band/types';
 import Nav from '../components/Nav/Nav';
@@ -18,6 +23,7 @@ export const Tinder = () => {
     const [rightAnimationStarted, setRightAnimationStarted] = useState(false);
 
     const uid = useAppSelector((state: any) => state.user.id);
+    const currentUserName = useAppSelector((state: any) => state.user.name);
 
     useEffect(() => {
         (async () => {
@@ -47,6 +53,7 @@ export const Tinder = () => {
         if (direction === 'right') {
             setSwipedRightBands((prevState) => [...prevState, nameToDelete]);
             setRightAnimationStarted(true);
+            notifyUsers(nameToDelete);
             setTimeout(() => {
                 setRightAnimationStarted(false);
             }, 1000);
@@ -58,11 +65,41 @@ export const Tinder = () => {
         }
 
         addBandsToUser(uid, swipedRightBands);
+
         console.log(swipedRightBands);
     };
 
-    const outOfFrame = (name: string) => {
-        console.log(name + ' left the screen!');
+    const notifyUsers = async (nameToNotify: string) => {
+        console.log('notifyUsers has been called');
+        let bandMembers: string[] = [];
+        try {
+            const response = await getBandByName(nameToNotify);
+
+            console.log(`Response from getBandByName:`, response);
+
+            if (response && response.memberIDs) {
+                // bandMembers = response.memberIDs;
+                // Call notifyBandMebers
+                for (let member of response.memberIDs) {
+                    await createNotificationInDb({
+                        isRead: false,
+                        recipientUserId: member,
+                        senderUserId: uid,
+                        type: 'like',
+                        userName: currentUserName,
+                        message: `${currentUserName} liked your band`,
+                    });
+                }
+            } else {
+                console.log('No members found.');
+            }
+        } catch (error) {
+            console.error('Error in notifyUsers:', error);
+        }
+    };
+
+    const outOfFrame = async (name: string) => {
+        console.log(`${name} left the screen!`);
     };
 
     return (

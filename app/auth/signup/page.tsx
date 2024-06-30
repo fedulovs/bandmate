@@ -31,6 +31,7 @@ const SignUp = () => {
             const userId = userCredential.user.uid;
 
             await createUserInDb(userId, {
+                bands: [],
                 email: email,
                 name: userName,
                 tags: [],

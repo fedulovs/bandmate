@@ -133,40 +133,6 @@ export const getUserById = async (id: string): Promise<User | null> => {
     return null;
 };
 
-export const getNotificationByRecipientId = async (
-    recipientId: string
-): Promise<INotification[]> => {
-    try {
-        const db = getFirestore();
-        const notificationsRef = collection(db, 'notifications');
-        const q = query(
-            notificationsRef,
-            where('recipientUserId', '==', recipientId)
-        );
-        const querySnapshot = await getDocs(q);
-
-        const notifications: INotification[] = [];
-
-        if (!querySnapshot.empty) {
-            querySnapshot.forEach((doc) => {
-                const notificationData = doc.data() as INotification;
-                notificationData.id = doc.id;
-                notifications.push(notificationData);
-            });
-        } else {
-            console.log(
-                'No notifications found with the recipientId:',
-                recipientId
-            );
-        }
-
-        return notifications;
-    } catch (error) {
-        console.error('Error fetching notifications by recipientId:', error);
-        throw error;
-    }
-};
-
 export const createUserInDb = async (
     uid: string,
     data: Omit<User, 'id'>
@@ -237,6 +203,58 @@ export const addAboutToUser = async (
         }
     } catch (error) {
         throw error;
+    }
+};
+
+export const getNotificationByRecipientId = async (
+    recipientId: string
+): Promise<INotification[]> => {
+    try {
+        const db = getFirestore();
+        const notificationsRef = collection(db, 'notifications');
+        const q = query(
+            notificationsRef,
+            where('recipientUserId', '==', recipientId)
+        );
+        const querySnapshot = await getDocs(q);
+
+        const notifications: INotification[] = [];
+
+        if (!querySnapshot.empty) {
+            querySnapshot.forEach((doc) => {
+                const notificationData = doc.data() as INotification;
+                notificationData.id = doc.id;
+                notifications.push(notificationData);
+            });
+        } else {
+            console.log(
+                'No notifications found with the recipientId:',
+                recipientId
+            );
+        }
+
+        return notifications;
+    } catch (error) {
+        console.error('Error fetching notifications by recipientId:', error);
+        throw error;
+    }
+};
+
+export const createNotificationInDb = async (
+    data: Omit<INotification, 'id'>
+): Promise<any> => {
+    const db = getFirestore();
+
+    try {
+        const docRef = await addDoc(
+            collection(db, notificationsItemCollection),
+            data
+        );
+        console.log('Notification was created with ID:', docRef.id);
+        return docRef.id; // Return the ID of the created document
+    } catch (error) {
+        console.error('Error fetching notifications by recipientId:', error);
+        return Promise.reject(error);
     }
 };
 

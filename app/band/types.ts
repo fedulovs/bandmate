@@ -5,4 +5,5 @@ export interface IBand {
     tags?: string[];
     avatar: string;
     members: string[];
+    memberIDs: string[];
 }
