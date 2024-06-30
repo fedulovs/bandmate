@@ -30,8 +30,11 @@ const Notifications = () => {
         <div>
             <Nav title='Notifications' />
             <div className='notification-container'>
-                {notifications?.map((notification) => (
-                    <div className='notification-container__notification'>
+                {notifications?.map((notification, index) => (
+                    <div
+                        className='notification-container__notification'
+                        key={index}
+                    >
                         <div className='notification-container__username'>
                             <h4>{notification.userName}</h4>
                             {!notification.isRead && (
