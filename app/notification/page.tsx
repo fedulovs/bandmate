@@ -3,7 +3,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Nav from '../components/Nav/Nav';
 import './style.css';
-import { getNotificationByRecipientId } from '../firebase/config';
+import {
+    getNotificationByRecipientId,
+    readNotification,
+} from '../firebase/config';
 import { INotification } from './types';
 import { useAppSelector } from '../store/store';
 
@@ -15,8 +18,12 @@ const Notifications = () => {
 
     const getNotifications = useCallback(async () => {
         try {
-            const notifications = await getNotificationByRecipientId(user.id);
-            setNotifications(notifications);
+            const fetchedNotifications = await getNotificationByRecipientId(
+                user.id
+            );
+            setNotifications(fetchedNotifications);
+
+            await readNotification(user.id);
         } catch (error) {
             console.error('Error fetching notifications:', error);
         }

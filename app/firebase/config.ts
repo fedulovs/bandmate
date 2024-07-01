@@ -42,6 +42,8 @@ export const initializeApi = () => {
 
 export const auth = getAuth(initializeApp(firebaseConfig));
 
+/** Bands */
+
 export const getBands = async (): Promise<IBand[]> => {
     const db = getFirestore();
     const items: IBand[] = [];
@@ -90,6 +92,8 @@ export const getBandByName = async (
         throw error;
     }
 };
+
+/** Users */
 
 export const getUsers = async (): Promise<User[]> => {
     const db = getFirestore();
@@ -206,6 +210,8 @@ export const addAboutToUser = async (
     }
 };
 
+/** Notifications */
+
 export const getNotificationByRecipientId = async (
     recipientId: string
 ): Promise<INotification[]> => {
@@ -255,6 +261,23 @@ export const createNotificationInDb = async (
     } catch (error) {
         console.error('Error fetching notifications by recipientId:', error);
         return Promise.reject(error);
+    }
+};
+
+export const readNotification = async (uid: string): Promise<void> => {
+    try {
+        const notifications: INotification[] =
+            await getNotificationByRecipientId(uid);
+
+        const db = getFirestore();
+        const updatePromises = notifications.map((notification) => {
+            const notificationRef = doc(db, 'notifications', notification.id);
+            return updateDoc(notificationRef, { isRead: true });
+        });
+
+        await Promise.all(updatePromises);
+    } catch (error) {
+        console.error('Failed to mark notifications as read:', error);
     }
 };
 
