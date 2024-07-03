@@ -19,7 +19,9 @@ export default function RootLayout({
     return (
         <div className='login-container'>
             <div className='aside'>
-                <h1 className='aside__header'>Bandmate</h1>
+                <h1 className='aside__header' data-testid='login-header'>
+                    Bandmate
+                </h1>
                 <div className='image-container'>
                     <Image
                         className='background-image'
@@ -29,6 +31,7 @@ export default function RootLayout({
                         fill
                         sizes='100vw'
                         placeholder='blur'
+                        data-testid='login-image'
                     ></Image>
                 </div>
                 <div className='aside__switch-container'>
@@ -36,6 +39,7 @@ export default function RootLayout({
                         <Button
                             buttonType='login'
                             onClick={() => handleNavigation('/auth/signup')}
+                            data-testid='switch-to-sign-up-button'
                         >
                             Sign Up
                         </Button>
@@ -44,6 +48,7 @@ export default function RootLayout({
                         <Button
                             buttonType='login'
                             onClick={() => handleNavigation('/auth/login')}
+                            data-testid='switch-to-log-in-button'
                         >
                             Log in
                         </Button>
