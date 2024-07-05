@@ -7,7 +7,7 @@ interface Props {
 
 export const Tags: FC<Props> = ({ tagsList }) => {
     return (
-        <div className='tags-container'>
+        <div className='tags-container' data-testid='tags'>
             {tagsList &&
                 tagsList.map((tag) => (
                     <p key={tag} className='tag'>

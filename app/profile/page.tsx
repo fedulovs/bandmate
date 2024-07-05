@@ -29,7 +29,7 @@ export const Profile = () => {
 
     return (
         <>
-            <Nav title='Profile' />
+            <Nav title='Profile' data-testid='profile-title' />
             <div className='profile-container'>
                 <div className='profile--image-container'>
                     <Image
@@ -42,15 +42,21 @@ export const Profile = () => {
                             maxWidth: '100%',
                             maxHeight: '100%',
                         }}
+                        data-testid='profile-image'
                     ></Image>
                 </div>
                 <div className='data-container'>
                     <p className='name'>Display name</p>
-                    <h3>{user.name}</h3>
+                    <h3 data-testid='profile-name'>{user.name}</h3>
                     <p className='email'>Email</p>
-                    <h3>{user.email}</h3>
+                    <h3 data-testid='profile-email'>{user.email}</h3>
                     <div className='description-container'>
-                        <p className='description'>About</p>
+                        <p
+                            className='description'
+                            data-testid='profile-description'
+                        >
+                            About
+                        </p>
                         <Button
                             buttonType='regular'
                             classNames='description-container__edit-button'
@@ -88,6 +94,7 @@ export const Profile = () => {
                             classNames='start-tinder-container__button'
                             buttonType='regular'
                             onClick={() => router.push('/tinder')}
+                            data-testid='profile-start-tinder-button'
                         >
                             Let's go!
                         </Button>
