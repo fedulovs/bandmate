@@ -13,6 +13,7 @@ export class UserProfilePage {
     readonly profileDescription: Locator;
     readonly tags: Locator;
     readonly profileStartTinderButton: Locator;
+    readonly pageURL: RegExp = /.*profile/;
 
     constructor(page: Page) {
         this.page = page;
@@ -35,6 +36,9 @@ export class UserProfilePage {
         await expect(this.profileDescription).toBeVisible();
         await expect(this.tags).toBeVisible();
         await expect(this.profileStartTinderButton).toBeVisible();
+
+        // Check URL
+        await expect(this.page).toHaveURL(this.pageURL);
     }
 }
 
