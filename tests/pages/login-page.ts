@@ -1,9 +1,5 @@
 import { type Locator, type Page, expect } from '@playwright/test';
 
-// import dotenv from 'dotenv';
-
-// dotenv.config();
-
 export class LoginPage {
     readonly page: Page;
     readonly pageTitle: Locator;
@@ -14,6 +10,7 @@ export class LoginPage {
     readonly passwordInput: Locator;
     readonly logInButton: Locator;
     readonly loginToSignupSwitch: Locator;
+    readonly pageURL: RegExp = /.*login/;
 
     constructor(page: Page) {
         this.page = page;
@@ -35,6 +32,9 @@ export class LoginPage {
         await expect(this.passwordText).toBeVisible();
         await expect(this.passwordInput).toBeVisible();
         await expect(this.loginToSignupSwitch).toBeVisible();
+
+        // Check URL
+        await expect(this.page).toHaveURL(this.pageURL);
     }
 
     async enterEmail() {
