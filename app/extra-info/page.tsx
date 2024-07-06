@@ -49,7 +49,7 @@ const page = () => {
 
     return (
         <div className='page-container'>
-            <h1>Choose your favorite styles</h1>
+            <h1 data-testid='extra-info-header'>Choose your favorite styles</h1>
             <div className='tags-container'>
                 {tags.map((tag) => (
                     <div
@@ -58,6 +58,7 @@ const page = () => {
                         }`}
                         key={tag.name}
                         onClick={() => handleTagClick(tag)}
+                        data-testid='extra-info-tag'
                     >
                         <p>{tag.name}</p>
                     </div>
@@ -68,6 +69,7 @@ const page = () => {
                     classNames='ready-button'
                     buttonType={'regular'}
                     onClick={addTags}
+                    data-testid='ready-button'
                 >
                     Ready
                 </Button>

@@ -56,15 +56,16 @@ const SignUp = () => {
             <form className='login-form' onSubmit={signUp}>
                 {/* Second use of h1 on one page 😱 */}
                 <h1 className='login-form__header'>Create Account</h1>
-                <p>Name*</p>
+                <p data-testid='name-text'>Name*</p>
                 <input
                     className='login-form__user-name-input'
                     type='text'
                     placeholder='Enter your name'
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
+                    data-testid='name-input'
                 ></input>
-                <p>Email*</p>
+                <p data-testid='email-text'>Email*</p>
                 <input
                     className='login-form__email-input'
                     type='email'
@@ -72,8 +73,9 @@ const SignUp = () => {
                     value={email}
                     autoComplete='email'
                     onChange={(e) => setEmail(e.target.value)}
+                    data-testid='email-input'
                 ></input>
-                <p>Password*</p>
+                <p data-testid='password-text'>Password*</p>
                 <input
                     className='login-form__password-input'
                     type='password'
@@ -81,11 +83,13 @@ const SignUp = () => {
                     value={password}
                     autoComplete='current-password'
                     onChange={(e) => setPassword(e.target.value)}
+                    data-testid='password-input'
                 ></input>
                 <Button
                     classNames='login-form__signin-button'
                     buttonType='regular'
                     type='submit'
+                    data-testid='submit-button'
                 >
                     Create account
                 </Button>
