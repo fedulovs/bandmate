@@ -5,7 +5,6 @@ import UserProfilePage from './pages/user-profile-page';
 let loginPage: LoginPage;
 let profilePage: UserProfilePage;
 const URL = 'http://localhost:3000/auth/login';
-// const partialURL = /.*auth/login/;
 
 test.beforeEach(async ({ page }) => {
     await page.goto(URL);
@@ -23,6 +22,7 @@ test.describe('Login page', () => {
         await loginPage.enterPassword();
         await loginPage.clickLogIn();
 
+        // Check that profile page is opened
         await profilePage.assertPageOpened();
     });
 });
