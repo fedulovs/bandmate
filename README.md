@@ -6,7 +6,7 @@ Discover and connect with local musicians and bands using a Tinder-like swipe me
 
 -   [Features](#features)
 -   [Technologies](#technologies)
--   [Running Tests](#running-tests)
+-   [Tests](#tests)
 
 ## Features
 
@@ -25,7 +25,19 @@ Discover and connect with local musicians and bands using a Tinder-like swipe me
 -   **UI Testing:** [Playwright](https://playwright.dev/)
 -   **Tinder Swipe mechanic:** [React Tinder Card](https://github.com/3DJakob/react-tinder-card)
 
-## Running Tests
+## Tests
+
+UI tests are done in Playwright using page object pattern. In addition to main flows, all pages are checked for the presence of elements.
+
+-   Open Log In page
+-   Log In
+-   Open Sign Up page
+-   Sign Up
+-   Open Profile page
+-   Open Tinder page
+-   Swipe mechanic
+
+### Running UI tests
 
 ```bash
 # run UI tests
