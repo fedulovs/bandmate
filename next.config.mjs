@@ -25,4 +25,14 @@ export default {
             },
         ],
     },
+
+    async redirects() {
+        return [
+            {
+                source: '/',
+                destination: '/auth/login',
+                permanent: true,
+            },
+        ];
+    },
 };
