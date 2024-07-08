@@ -1,17 +1,16 @@
 'use client';
 import React, { useState } from 'react';
 import { addAboutToUser } from '../firebase/config';
-
 import Image from 'next/image';
 import logo from '../../public/kurwa_logo.png';
 import Tags from '../components/tags/tags';
 import Nav from '../components/Nav/Nav';
-import { useAppDispatch, useAppSelector } from '../store/store';
 import { useRouter } from 'next/navigation';
 import { Edit } from '../components/svg';
-import './style.css';
+import { useAppDispatch, useAppSelector } from '../store/store';
 import { setUserState } from '../store/userSlice';
 import { Button } from '../components/common/button/Button';
+import './style.css';
 
 export const Profile = () => {
     const user = useAppSelector((state: any) => state.user);

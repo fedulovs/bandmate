@@ -1,4 +1,4 @@
-function generateRandomEmail(): string {
+const generateRandomEmail = (): string => {
     const characters =
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     const charactersLength = characters.length;
@@ -17,6 +17,6 @@ function generateRandomEmail(): string {
     const domainPart = getRandomCharacters(4);
 
     return `test-${localPart}@${domainPart}.com`;
-}
+};
 
 export default generateRandomEmail;
