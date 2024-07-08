@@ -110,8 +110,12 @@ export const Tinder = () => {
                     className={`swipe-left ${
                         leftAnimationStarted && 'red-start'
                     }`}
+                    data-testid='left-side'
                 ></div>
-                <div className='card-container'>
+                <div
+                    className='card-container'
+                    data-testid='tinder-card-container'
+                >
                     {characters.map((character) => (
                         <TinderCard
                             className='swipe'
@@ -131,7 +135,13 @@ export const Tinder = () => {
                                 {character.tags && (
                                     <div className='tinder__tags-container'>
                                         {character.tags.map((tag: string) => (
-                                            <p className='tag'>#{tag}</p>
+                                            <p
+                                                className='tag'
+                                                key={tag}
+                                                data-testid='tinder-tag'
+                                            >
+                                                #{tag}
+                                            </p>
                                         ))}
                                     </div>
                                 )}
@@ -150,6 +160,7 @@ export const Tinder = () => {
                     className={`swipe-right ${
                         rightAnimationStarted && 'green-start'
                     }`}
+                    data-testid='right-side'
                 ></div>
             </div>
         </>
