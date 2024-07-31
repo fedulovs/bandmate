@@ -5,6 +5,7 @@ Discover and connect with local musicians and bands using a Tinder-like swipe me
 ## Table of Contents
 
 -   [Features](#features)
+-   [Pages](#pages)
 -   [Technologies](#technologies)
 -   [Tests](#tests)
 
@@ -15,6 +16,32 @@ Discover and connect with local musicians and bands using a Tinder-like swipe me
 3. Like bands and musicians to express interest
 4. View detailed profiles of bands and musicians
 5. Receive notifications when someone likes your band or profile
+
+## Pages
+
+### Login/Signup
+
+![Login/Signup](./readme-images/login_page.png)
+
+### Styles
+
+![styles](./readme-images/extra_info_page.png)
+
+### Band
+
+![band](./readme-images/band_page.png)
+
+### Profile
+
+![user](./readme-images/user_profile_page.png)
+
+### Tinder
+
+![tinder](./readme-images/tinder_page.png)
+
+### Notifications
+
+![notifiactions](./readme-images/notifications_page.png)
 
 ## Technologies
 
