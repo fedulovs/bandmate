@@ -13,7 +13,7 @@ import {
 } from 'firebase/firestore';
 import dotenv from 'dotenv';
 import { IBand } from '../band/types';
-import { User } from '../user/types';
+import { IUser } from '../user/types';
 import { getAuth } from 'firebase/auth';
 import { INotification } from '../notification/types';
 
@@ -95,9 +95,9 @@ export const getBandByName = async (
 
 /** Users */
 
-export const getUsers = async (): Promise<User[]> => {
+export const getUsers = async (): Promise<IUser[]> => {
     const db = getFirestore();
-    const items: User[] = [];
+    const items: IUser[] = [];
 
     try {
         const querySnapshot = await getDocs(
@@ -105,7 +105,7 @@ export const getUsers = async (): Promise<User[]> => {
         );
 
         querySnapshot.forEach((doc) => {
-            const data = doc.data() as Omit<User, 'id'>;
+            const data = doc.data() as Omit<IUser, 'id'>;
 
             items.push({
                 id: doc.id,
@@ -119,7 +119,7 @@ export const getUsers = async (): Promise<User[]> => {
     return items;
 };
 
-export const getUserById = async (id: string): Promise<User | null> => {
+export const getUserById = async (id: string): Promise<IUser | null> => {
     const db = getFirestore();
     const usersRef = collection(db, 'users');
 
@@ -129,7 +129,7 @@ export const getUserById = async (id: string): Promise<User | null> => {
     const querySnapshot = await getDocs(q);
 
     for (const doc of querySnapshot.docs) {
-        const userData = doc.data() as User;
+        const userData = doc.data() as IUser;
         userData.id = doc.id;
         return userData;
     }
@@ -139,7 +139,7 @@ export const getUserById = async (id: string): Promise<User | null> => {
 
 export const createUserInDb = async (
     uid: string,
-    data: Omit<User, 'id'>
+    data: Omit<IUser, 'id'>
 ): Promise<any> => {
     const db = getFirestore();
 
