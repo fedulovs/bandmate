@@ -1,5 +1,6 @@
 .tags-container {
     display: inline-flex;
+    flex-wrap: wrap;
     background-color: var(--color-secondary-dark);
     border-radius: 30px;
     padding: 10px;
@@ -9,6 +10,7 @@
 
 .tag {
     margin: 0;
+    white-space: nowrap;
 }
 
 .tag:not(:last-child) {
