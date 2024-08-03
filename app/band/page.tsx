@@ -63,7 +63,7 @@ export const Band = () => {
         <>
             <Nav title='Band' />
             <div className='band-profile-container'>
-                <div className='profile--image-container'>
+                <div className='band-profile-image-container'>
                     <Image
                         className='band-avatar'
                         src={band?.avatar ? band.avatar : logo}
