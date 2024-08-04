@@ -86,6 +86,18 @@
     border: 1px solid var(--color-secondary-dark);
 }
 
+@media (max-width: 768px) {
+    .data-container__edit-about__text {
+        width: 500px;
+    }
+}
+
+@media (max-width: 425px) {
+    .data-container__edit-about__text {
+        width: 270px;
+    }
+}
+
 .data-container__edit-about__submit-button {
     margin-top: 16px;
 }
